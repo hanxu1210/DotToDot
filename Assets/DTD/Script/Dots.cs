@@ -73,7 +73,11 @@ public class Dots : MonoBehaviour {
 //				GameOver ();
 //		}
 
-		if (Input.anyKeyDown && GameManager.Instance.State == GameManager.GameState.Playing) {
+#if UNITY_EDITOR
+	if (Input.anyKeyDown && GameManager.Instance.State == GameManager.GameState.Playing) {
+#else
+	if (KeyboardHandler.IsOkButtonDown() && GameManager.Instance.State == GameManager.GameState.Playing) {
+#endif
 			var Dot = usingDotID == 1 ? DotID2 : DotID1;
 
 			var hit = Physics2D.CircleCast (Dot.position, radius, Vector2.zero, 0, targetLayer);

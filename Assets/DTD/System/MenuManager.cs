@@ -41,7 +41,14 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void GameOver(){
-		Gameover.SetActive (true);
+		StartCoroutine(GameOverCoroutine());
+	}
+
+    IEnumerator GameOverCoroutine()
+    {
+        yield return null;
+        Gameover.SetActive (true);
+
 	}
 
 	public void Pause(){
